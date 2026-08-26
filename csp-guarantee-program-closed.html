@@ -23,8 +23,7 @@
   .topbar-left{ display:flex; align-items:center; gap:12px; }
   .topbar-back{ background:none; border:0; padding:0; cursor:pointer; color:var(--text); display:flex; }
   .topbar-title{ font-size:17px; font-weight:700; color:var(--text); }
-  .clang{ position:absolute; top:16px; right:16px; z-index:10;
-    border:1px solid #ddd; background:var(--white); color:var(--text);
+  .clang{ border:1px solid #ddd; background:var(--white); color:var(--text);
     border-radius:999px; font-family:inherit; font-size:12px; font-weight:600;
     padding:5px 12px; cursor:pointer; }
 
@@ -98,10 +97,11 @@
 </style>
 
 <div class="page">
-  <button class="clang" id="langToggle" aria-label="Switch language">English</button>
-
   <!-- Content -->
   <div class="content">
+    <div style="display:flex;justify-content:flex-end;">
+      <button class="clang" id="langToggle" aria-label="Switch language">English</button>
+    </div>
 
     <!-- Hero Banner -->
     <div class="hero">
