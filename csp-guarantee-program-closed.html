@@ -1,0 +1,248 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>गारंटी प्रोग्राम</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,1" rel="stylesheet">
+<style>
+  :root{
+    --brand:#D9008D; --brand-light:#FFB2E4; --brand-sec:#443152;
+    --bg:#F4F4F8; --white:#FFFFFF; --text:#1a1a2e; --text-dim:#666;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{ background:var(--bg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;
+    -webkit-font-smoothing:antialiased; }
+
+  .page{ position:fixed; inset:0; max-width:420px; margin:0 auto;
+    display:flex; flex-direction:column; background:var(--bg); }
+
+  /* ── Top Bar ── */
+  .topbar{ display:flex; align-items:center; justify-content:space-between;
+    padding:14px 16px; background:var(--white); }
+  .topbar-left{ display:flex; align-items:center; gap:12px; }
+  .topbar-back{ background:none; border:0; padding:0; cursor:pointer; color:var(--text); display:flex; }
+  .topbar-title{ font-size:17px; font-weight:700; color:var(--text); }
+  .clang{ border:1px solid #ddd; background:var(--white); color:var(--text);
+    border-radius:999px; font-family:inherit; font-size:12px; font-weight:600;
+    padding:5px 12px; cursor:pointer; }
+
+  /* ── Scrollable Content ── */
+  .content{ flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:14px; }
+
+  /* ── Hero Banner (dark purple like reference) ── */
+  .hero{
+    background:linear-gradient(135deg, #3d2b52 0%, #2d1e3e 50%, #443152 100%);
+    border-radius:18px; padding:24px 20px; position:relative; overflow:hidden;
+  }
+  .hero::after{
+    content:''; position:absolute; top:-30px; right:-30px;
+    width:140px; height:140px; border-radius:50%;
+    background:rgba(255,255,255,.04);
+  }
+  .hero-badge-row{ display:flex; align-items:center; gap:8px; margin-bottom:18px; }
+  .hero-date-badge{ background:var(--white); color:var(--text); font-size:11px; font-weight:600;
+    padding:6px 12px; border-radius:10px; display:flex; align-items:center; gap:6px; line-height:1.3; }
+  .hero-date-badge .material-symbols-outlined{ font-size:16px; color:var(--brand); }
+  .hero-status-badge{ background:rgba(239,68,68,.2); color:#fca5a5; font-size:12px; font-weight:700;
+    padding:5px 14px; border-radius:999px; }
+  .hero-body{ display:flex; align-items:center; gap:16px; }
+  .hero-icon-wrap{ flex-shrink:0; width:80px; height:80px; border-radius:50%;
+    background:rgba(255,255,255,.08);
+    display:flex; align-items:center; justify-content:center; position:relative; }
+  .hero-icon-wrap .material-symbols-outlined{ font-size:44px; color:var(--brand-light); }
+  .hero-icon-x{ position:absolute; bottom:2px; right:2px; width:24px; height:24px; border-radius:50%;
+    background:#ef4444; color:var(--white); font-size:14px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; }
+  .hero-text{ flex:1; }
+  .hero-title{ font-size:20px; line-height:28px; font-weight:700; color:var(--white); margin-bottom:6px; }
+  .hero-sub{ font-size:13px; line-height:20px; color:rgba(255,255,255,.7); }
+
+  /* ── Info Card (pink accent like reference) ── */
+  .info-card{ background:var(--white); border-radius:16px; padding:20px;
+    border:1px solid #eee; }
+  .info-card-header{ display:flex; align-items:center; gap:12px; margin-bottom:4px; }
+  .info-emoji{ width:42px; height:42px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .info-emoji.green{ background:#e8faf0; }
+  .info-emoji.green .material-symbols-outlined{ color:#22c55e; font-size:24px; }
+  .info-emoji.blue{ background:#eef2ff; }
+  .info-emoji.blue .material-symbols-outlined{ color:#6366f1; font-size:24px; }
+  .info-card-title{ font-size:15px; font-weight:700; color:var(--text); }
+  .info-card-desc{ font-size:14px; line-height:22px; color:var(--text-dim); margin-top:8px; }
+
+  /* ── List Card (like reference bottom section) ── */
+  .list-card{ background:var(--white); border-radius:16px; overflow:hidden; border:1px solid #eee; }
+  .list-card-header{ padding:16px 20px 10px; font-size:15px; font-weight:700; color:var(--text); }
+  .list-item{ display:flex; align-items:center; gap:14px; padding:14px 20px;
+    border-top:1px solid #f0f0f0; }
+  .list-icon{ width:38px; height:38px; border-radius:10px; background:#f5e6ff;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .list-icon .material-symbols-outlined{ font-size:20px; color:#7c3aed; }
+  .list-item-text{ flex:1; }
+  .list-item-title{ font-size:14px; font-weight:600; color:var(--text); }
+  .list-item-desc{ font-size:12px; color:var(--text-dim); margin-top:2px; }
+  .list-item-phone{ margin-top:6px; display:flex; align-items:center; gap:4px; }
+  .list-chevron{ color:#ccc; display:flex; }
+
+  /* ── CTA ── */
+  .cta-wrap{ padding:12px 16px 24px; background:var(--bg); }
+  .ccta{ border:0; border-radius:14px; background:var(--brand); color:var(--white);
+    font-family:inherit; font-size:16px; font-weight:700; padding:16px; cursor:pointer; width:100%;
+    display:flex; align-items:center; justify-content:center; gap:8px; }
+  .ccta .material-symbols-outlined{ font-size:20px; }
+  .ccta:focus-visible{ outline:3px solid var(--brand-light); outline-offset:2px; }
+
+  @media (prefers-reduced-motion:reduce){ *{ transition:none!important; } }
+</style>
+
+<div class="page">
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <button class="topbar-back" aria-label="Back" onclick="history.back()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+      </button>
+      <span class="topbar-title" data-i18n="topTitle">गारंटी प्रोग्राम</span>
+    </div>
+    <button class="clang" id="langToggle" aria-label="Switch language">English</button>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Hero Banner -->
+    <div class="hero">
+      <div class="hero-body">
+        <div class="hero-icon-wrap">
+          <span class="material-symbols-outlined">shield</span>
+          <span class="hero-icon-x">✕</span>
+        </div>
+        <div class="hero-text">
+          <p class="hero-title" data-i18n="heroTitle">गारंटी प्रोग्राम अब बंद हो गया है</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Card 1 -->
+    <div class="info-card">
+      <div class="info-card-header">
+        <span class="info-emoji green"><span class="material-symbols-outlined">check_circle</span></span>
+        <span class="info-card-title" data-i18n="card1Title">आपका काम चलता रहेगा</span>
+      </div>
+      <p class="info-card-desc" data-i18n="card1Desc">यह बात सिर्फ़ गारंटी प्रोग्राम तक है — बाकी काम और उसकी कमाई, सब पहले जैसा चलता रहेगा।</p>
+    </div>
+
+    <!-- List Card -->
+    <div class="list-card">
+      <p class="list-card-header" data-i18n="listHeader">अब आगे क्या होगा?</p>
+      <div class="list-item">
+        <span class="list-icon"><span class="material-symbols-outlined">support_agent</span></span>
+        <div class="list-item-text">
+          <p class="list-item-title" data-i18n="list1Title">PTL को call करें</p>
+          <p class="list-item-desc" data-i18n="list1Desc">इस बदलाव से जुड़ी पूरी जानकारी और अपने सवालों के जवाब पाएँ</p>
+          <p class="list-item-phone">
+            <span class="material-symbols-outlined" style="font-size:14px;vertical-align:middle;">call</span>
+            <a href="tel:7836811111" data-i18n="phone" style="color:var(--brand);font-weight:700;text-decoration:none;font-size:14px;">7836811111</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <button class="ccta" id="ctaBtn">
+      <span class="material-symbols-outlined">call</span>
+      <span data-i18n="cta">PTL को call करें</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  var STR = {
+    hi:{
+      toggle:'English',
+      topTitle:'गारंटी प्रोग्राम',
+      dateInfo:'26 अगस्त 2026 से बंद',
+      badge:'बंद',
+      heroTitle:'गारंटी प्रोग्राम अब बंद हो गया है',
+      heroSub:'लेकिन चिंता न करें — आपका काम और कमाई पहले की तरह जारी रहेगी।',
+      card1Title:'आपका काम चलता रहेगा',
+      card1Desc:'यह बात सिर्फ़ गारंटी प्रोग्राम तक है — बाकी काम और उसकी कमाई, सब पहले जैसा चलता रहेगा।',
+      listHeader:'अब आगे क्या होगा?',
+      list1Title:'PTL से बात करें',
+      list1Desc:'इस बदलाव से जुड़ी पूरी जानकारी और अपने सवालों के जवाब पाएँ',
+      list2Title:'शर्तें और जानकारी पढ़ें',
+      list2Desc:'प्रोग्राम बंद होने की पूरी शर्तें और नियम देखें',
+      cta:'PTL को call करें',
+      doc:'गारंटी प्रोग्राम'
+    },
+    en:{
+      toggle:'हिंदी',
+      topTitle:'Guarantee Program',
+      dateInfo:'Closed from 26 Aug 2026',
+      badge:'Closed',
+      heroTitle:'Guarantee program has been closed',
+      heroSub:'Don\'t worry — your work and earnings will continue as before.',
+      card1Title:'Your work continues',
+      card1Desc:'This only affects the guarantee program — all other work and its earnings will continue as usual.',
+      listHeader:'What happens next?',
+      list1Title:'Talk to your PTL',
+      list1Desc:'Get complete details about this change and answers to your questions',
+      list2Title:'Read terms & details',
+      list2Desc:'View full terms and conditions of the program closure',
+      cta:'Call PTL',
+      doc:'Guarantee Program'
+    }
+  };
+
+  /* ═══════════════════════════════════════════════════════════════
+     CSP ID: injected by CleverTap Liquid personalization
+     ═══════════════════════════════════════════════════════════════ */
+  var CSP_ID = '{{ Profile.cspId | default: "" }}';
+
+  /* ── CleverTap tracking ── */
+  var EV_PREFIX = 'GuaranteeClose_', sent = {}, DEBUG = (location.protocol === 'file:');
+  function ctPush(ev, p){
+    try{ if(window.CleverTap && typeof window.CleverTap.pushEvent === 'function'){ p ? window.CleverTap.pushEvent(ev, JSON.stringify(p)) : window.CleverTap.pushEvent(ev); return true; } }catch(e){}
+    try{ var wk = window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.clevertap; if(wk){ wk.postMessage({action:'recordEventWithProps', event:ev, properties:p||{}}); return true; } }catch(e){}
+    return false;
+  }
+  function track(name, p){
+    p = p || {}; p.cspId = CSP_ID;
+    var ev = EV_PREFIX + name, k = ev + '|' + JSON.stringify(p);
+    if(sent[k]) return; sent[k] = 1;
+    if(DEBUG){ try{ console.log('[track]', ev, p); }catch(e){} }
+    var n = 0; (function go(){ n++; if(ctPush(ev, p)) return; if(n < 6) setTimeout(go, 250 * n); })();
+  }
+
+  var lang = 'hi';
+
+  function render(){
+    var s = STR[lang];
+    document.documentElement.lang = lang;
+    document.title = s.doc;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var v = s[el.getAttribute('data-i18n')];
+      if(v !== undefined) el.textContent = v;
+    });
+    document.getElementById('langToggle').textContent = s.toggle;
+  }
+
+  document.getElementById('langToggle').addEventListener('click', function(){
+    lang = (lang === 'hi' ? 'en' : 'hi');
+    render();
+  });
+
+  document.getElementById('ctaBtn').addEventListener('click', function(){
+    track('CTA_Clicked', { action: 'call_ptl', lang: lang, phone: '7836811111' });
+
+    // Open phone dialer
+    window.location.href = 'tel:7836811111';
+  });
+
+  render();
+  track('Viewed');
+</script>
