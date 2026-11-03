@@ -629,7 +629,7 @@
 
     <!-- Top bar -->
     <div class="top-bar">
-      <button class="close-btn" onclick="window.close()">
+      <button class="close-btn" onclick="location.href='wiom://close'">
         <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
       </button>
       <div class="lang-toggle">
@@ -719,11 +719,10 @@
       </div>
 
       <!-- CTA -->
-      <a href="#" class="cta-btn">
+      <button class="cta-btn" onclick="location.href='wiom://close'">
         <span class="cta-btn__shimmer"></span>
-        <span data-hi="अपने सारे इंस्टॉलेशन देखें" data-en="View All Installations">अपने सारे इंस्टॉलेशन देखें</span>
-        <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-      </a>
+        <span data-hi="समझ गया" data-en="Got it">समझ गया</span>
+      </button>
     </div>
 
     <!-- Bottom diyas -->
