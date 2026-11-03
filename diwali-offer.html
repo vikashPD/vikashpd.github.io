@@ -89,18 +89,18 @@
   /* ── Canvas ── */
   .page {
     position: relative;
-    height: 100vh;
-    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden;
     background:
       radial-gradient(ellipse 120% 60% at 50% 0%, rgba(217,0,141,0.25) 0%, transparent 60%),
       radial-gradient(ellipse 80% 40% at 50% 100%, rgba(226,178,3,0.15) 0%, transparent 50%),
       var(--bg-brand-bold);
-    padding: var(--space-12) var(--space-16);
+    padding: var(--space-48) var(--space-16) var(--space-16);
     gap: var(--space-4);
   }
 
